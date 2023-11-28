@@ -1,4 +1,5 @@
 package DAO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class EmpleadoDAO implements IntEmpleado {
     // este metodo agrega empleados en la base de datos
     // No agrega una lista de los pedidos del empleado
     // El id del empleado es incremental en la base de datos
-    ///no agrega fotos todavia
+    /// no agrega fotos todavia
     @Override
     public boolean agregarEmpleado(Empleado e) {
         String sql = "insert into empleado(`cedula`, `nombres`, `apellidos`, `correo` , `telefono`, `estado`, `contraseña`) values('"
@@ -99,7 +100,8 @@ public class EmpleadoDAO implements IntEmpleado {
     // Metodo que modifica los datos de un empleado en la base de datos
     // falta implementar que pueda modificar la foto
     // solo se permite modifical el telefono y el estado
-    ///El estado por defecto debe ser activo osea en la vista solo puede poner activo o incativo NUNCA NULL
+    /// El estado por defecto debe ser activo osea en la vista solo puede poner
+    // activo o incativo NUNCA NULL
     @Override
     public boolean editarEmpleado(Empleado empleado) {
         try {
@@ -166,6 +168,22 @@ public class EmpleadoDAO implements IntEmpleado {
             e.getMessage();
         }
         return pedidos;
+    }
+
+    @Override
+    public boolean validarUsuario(String correo, String contraseña) {
+        String query = "SELECT * FROM empleado WHERE correo = ? AND contraseña = ?";
+        try {
+            con = cn.getConnection();
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, correo);
+            statement.setString(2, contraseña);
+            ResultSet rs = statement.executeQuery();
+            return rs.next(); // Si hay una fila devuelta, las credenciales son válidas
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

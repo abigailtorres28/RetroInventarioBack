@@ -31,8 +31,8 @@ public class pruebas {
         // agregarCamisa();
         // listarCamisasPedido(3);
         // consultarDisponibles();
-        asignarEmpleado();
-
+        //asignarEmpleado();
+        validarUsuario("admin@gmail.com", "abi");
     }
 
     public static void crear() {
@@ -242,6 +242,17 @@ public class pruebas {
         PedidoDAO ped = new PedidoDAO();
         ped.asignarEmpleado(4, 4);
 
+    }
+
+    public static void validarUsuario(String correo, String contraseña){
+        EmpleadoDAO em= new EmpleadoDAO();
+        boolean usuario= em.validarUsuario(correo, contraseña);
+        if(usuario){
+            System.out.println("wey si existe ese usaurio");
+        }
+        else{
+            System.out.println("nanaiii no existe");
+        }
     }
 
 }
