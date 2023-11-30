@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .my-body {
+        @apply min-h-screen flex justify-center items-center bg-blue-700;
+    }
+    .main-content {
+        @apply p-10 bg-gray-400 md:bg-white;
+    }
+    .main-text {
+        @apply font-bold text-7xl text-white md:text-8xl md:text-black;
+    }
+}

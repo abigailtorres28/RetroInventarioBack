@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
         <title>Login</title>
-        <link rel="stylesheet" href="CSS/styles.css">
+        <link rel="stylesheet" href="JSP/CSS/output.css" />
         <link href="images/logoR.png" rel="icon">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -13,75 +13,43 @@
 
 <body>
 
-    <!-- Section: Design Block -->
-    <section class="text-center text-lg-start">
-        <style>
-            .cascading-right {
-                margin-right: -50px;
-            }
-
-            @media (max-width: 991.98px) {
-                .cascading-right {
-                    margin-right: 0;
-                }
-            }
-        </style>
-
-        <!-- Jumbotron -->
-        <div class="container py-4">
-            <div class="row g-0 align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="card cascading-right" style="
-              background: hsla(0, 0%, 100%, 0.55);
-              backdrop-filter: blur(30px);
-              ">
-                        <div class="card-body p-5 shadow-5 text-center">
-                            <h2 class="fw-bold mb-5">Iniciar Sesion</h2>
-                            <form action="iniciarSesion" method="post">
-                                <!-- Email input -->
-                                <div class="form-outline mb-4">
-                                    <input type="email" id="form3Example3" class="form-control" name="correo" />
-                                    <label class="form-label" for="form3Example3" >Correo Electrónico</label>
-                                </div>
-
-                                <!-- Password input -->
-                                <div class="form-outline mb-4">
-                                    <input type="password" id="form3Example4" class="form-control" name="contraseña" />
-                                    <label class="form-label" for="form3Example4">Contraseña</label>
-                                </div>
-
-                                <!-- Submit button -->
-                                <button type="submit" class="btn btn-dark btn-block mb-4">
-                                    Entrar
-                                </button>
-
-                                <!-- Register buttons -->
-                                <div class="text-center">
-                                    <p>Recuperar Contraseña</p>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-facebook-f"></i>
-
-                                </div>
-                            </form>
-                        </div>
+    <body class="my-body">
+        <div class="flex h-screen w-screen font-sans">
+            <div
+                class="w-[65%] bg-gradient-to-r from-slate-400 to-white flex justify-center items-center flex-col gap-6">
+                <form action="iniciarSesion" method="post" class="w-[30%] flex flex-col gap-5">
+                    <div class="flex flex-col font-semibold text-xl">
+                        <label class="mb-1" for="email">Correo</label>
+                        <input class="py-2 px-3 rounded-xl shadow-lg shadow-gray-500 text-gray-800" name="correo"
+                            type="text" required />
                     </div>
-                </div>
-
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <img src="images/Logo Retro Shirt.jpg" class="w-100 rounded-4 shadow-4" alt="" />
+                    <div class="flex flex-col font-semibold text-xl">
+                        <label class="mb-1" for="password">Contraseña</label>
+                        <input class="py-2 px-3 rounded-xl shadow-lg shadow-gray-500 text-gray-800" name="contraseña"
+                            type="password" required />
+                    </div>
+                    <button type="submit" class="bg-gray-500 font-semibold text-white w-[75%] p-2 rounded-xl shadow-lg shadow-gray-500 hover:bg-gray-700 transition ease-in-out">
+                    Entrar
+                </button>
+                </form>
+                <div class="flex flex-col gap-4 justify-center items-center">
+                    <p class="font-semibold">Recuperar contraseña</p>
                 </div>
             </div>
+            <div class="h-screen bg-black flex justify-center items-center">
+                <img class="w-[350px] mx-16" src="JSP/assets/Logo-Retro-Shirt.jpg" alt="Logo" />
+            </div>
         </div>
-        <!-- Jumbotron -->
-    </section>
-    <!-- Section: Design Block -->
-    <div>
-        <% String mensajeError = (String)request.getAttribute("mensaje"); %>
-        <% if (mensajeError != null) { %>
-            <p style="color: red;"><%= mensajeError %></p>
-        <% } %>
-    </div>
+        <!-- Section: Design Block -->
+        <div>
+            <% String mensajeError=(String)request.getAttribute("mensaje"); %>
+                <% if (mensajeError !=null) { %>
+                    <p style="color: red;">
+                        <%= mensajeError %>
+                    </p>
+                    <% } %>
+        </div>
 
-</body>
+    </body>
 
 </html>
