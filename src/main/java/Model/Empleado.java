@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.InputStream;
+import java.time.LocalDate;
 
 public class Empleado {
     int id_empleado;
@@ -11,21 +12,21 @@ public class Empleado {
     String telefono;
     String estado;
     String cotraseña;
+    LocalDate fechaIngreso;
     InputStream foto;
 
     public Empleado() {
     }
 
-    public Empleado(String cedula, String nombres, String apellidos, String correo, String telefono,
-            String estado, String cotraseña, InputStream foto) {
+    public Empleado(String cedula, String nombres, String apellidos, String correo, String telefono, String cotraseña,LocalDate fecha, InputStream foto) {
 
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
         this.telefono = telefono;
-        this.estado = estado;
         this.cotraseña = cotraseña;
+        this.fechaIngreso= fecha;
         this.foto = foto;
     }
 
@@ -113,6 +114,15 @@ public class Empleado {
     public void setFoto(InputStream foto) {
         this.foto = foto;
     }
+
+    public LocalDate getFechaIngreso() {
+        return this.fechaIngreso;
+    }
+
+    public void setFechaIngreso(LocalDate fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
 
     @Override
     public String toString() {

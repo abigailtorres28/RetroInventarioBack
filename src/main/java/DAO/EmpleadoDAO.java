@@ -21,11 +21,12 @@ public class EmpleadoDAO implements IntEmpleado {
     // No agrega una lista de los pedidos del empleado
     // El id del empleado es incremental en la base de datos
     /// no agrega fotos todavia
+    ///El estado por defecto es activo
     @Override
     public boolean agregarEmpleado(Empleado e) {
         String sql = "insert into empleado(`cedula`, `nombres`, `apellidos`, `correo` , `telefono`, `estado`, `contraseña`) values('"
                 + e.getCedula() + "','" + e.getNombres() + "','"
-                + e.getApellidos() + "','" + e.getCorreo() + "','" + e.getTelefono() + "','" + e.getEstado() +
+                + e.getApellidos() + "','" + e.getCorreo() + "','" + e.getTelefono() + "','" + "Activo" +
                 "','" + e.getCotraseña() + "')";
         System.out.println(sql);
         try {

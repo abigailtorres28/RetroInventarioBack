@@ -15,6 +15,7 @@ import Model.Pedido;
 public class pruebas {
     public static void main(String[] args) {
         System.out.println("Vamos a asignarle un empleaodo al pedido 3");
+        crear();
         // ingresarLote();
         // listarLotes();
         // ingresarLote();
@@ -32,13 +33,12 @@ public class pruebas {
         // listarCamisasPedido(3);
         // consultarDisponibles();
         //asignarEmpleado();
-        validarUsuario("admin@gmail.com", "abi");
+        //validarUsuario("admin@gmail.com", "abi");
     }
 
     public static void crear() {
-
-        Empleado e = new Empleado("1435556", "Nixy", "Olaya", "nixy@gmail.com", "3142956779",
-                "activo", "admin6", null);
+        LocalDate fecha = LocalDate.of(2023, 12, 4);
+        Empleado e = new Empleado("1010075365", "Jakeline", "Escudero Mantilla", "jakelinescudero@gmail.com", "3142981659", "user8", fecha, null);
         EmpleadoDAO Ed = new EmpleadoDAO();
         e.toString();
         try {

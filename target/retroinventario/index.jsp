@@ -42,12 +42,13 @@
         </div>
         <!-- Section: Design Block -->
         <div>
-            <% String mensajeError=(String)request.getAttribute("mensaje"); %>
-                <% if (mensajeError !=null) { %>
-                    <p style="color: red;">
-                        <%= mensajeError %>
-                    </p>
-                    <% } %>
+            <% String mensajeError = (String) request.getAttribute("mensaje"); %>
+            <% if (mensajeError != null && !mensajeError.isEmpty()) { %>
+             <script>
+             alert("<%= mensajeError %>");
+             </script>
+            <% } %>
+
         </div>
 
     </body>

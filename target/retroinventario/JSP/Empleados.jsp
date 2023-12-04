@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link href="images/logoR.png" rel="icon">
+        <link href="../images/logoR.png" rel="icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../JSP/CSS/output.css" />
         <title>Empleados</title>
@@ -47,8 +47,11 @@
                 <p class="text-4xl font-bold">Empleados</p>
                 <div class="flex gap-5">
                     <img class="w-[50px]" src="assets/users.svg" alt="usersLogo">
-                    <button
-                        class="bg-gray-500 font-semibold text-white p-2 px-8 rounded-xl shadow-lg shadow-gray-500 hover:bg-gray-700 transition ease-in-out">Añadir</button>
+                     <form action="empleados_agregar.jsp" method="get">
+                        <button type="submit"  class="bg-gray-500 font-semibold text-white p-2 px-8 rounded-xl shadow-lg shadow-gray-500 hover:bg-gray-700 transition ease-in-out">
+                        Añadir
+                     </button>
+                     </form>
                 </div>
             </div>
             <div class="max-h-[450px] overflow-scroll mt-5 ml-10 w-full">
@@ -65,14 +68,14 @@
                         </tr>
                     </thead>
                     <% 
-    EmpleadoDAO em = new EmpleadoDAO();
-    List<Empleado> list = em.listarEmpleados();
-    Iterator<Empleado> iter = list.iterator();
-    Empleado e = null;
-    while (iter.hasNext()) {
-        e = iter.next();
-    %>
-                        <tbody>
+                            EmpleadoDAO em = new EmpleadoDAO();
+                            List<Empleado> list = em.listarEmpleados();
+                            Iterator<Empleado> iter = list.iterator();
+                            Empleado e = null;
+                            while (iter.hasNext()) {
+                                e = iter.next();
+                            %>
+                   <tbody>
                             <tr class="bg-white text-blacks text-sm">
                                 <td class="px-6 py-2" ><%= e.getId_empleado() %></td>
                                 <td class="px-6 py-2" ><%= e.getNombres() %></td>
