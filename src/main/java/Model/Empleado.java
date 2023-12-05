@@ -17,6 +17,12 @@ public class Empleado {
 
     public Empleado() {
     }
+    
+    public Empleado (int id, String estado, String telefono){
+        this.id_empleado=id;
+        this.estado= estado;
+        this.telefono= telefono;
+    }
 
     public Empleado(String cedula, String nombres, String apellidos, String correo, String telefono, String cotraseña,LocalDate fecha, InputStream foto) {
 
