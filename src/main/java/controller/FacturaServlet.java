@@ -9,6 +9,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 
 @WebServlet("/facturas")
 public class FacturaServlet extends HttpServlet {
@@ -28,7 +33,7 @@ public class FacturaServlet extends HttpServlet {
             FacturaDAO fd = new FacturaDAO();
             Factura f = new Factura(idPedido, correo, nombre, cedula, cantidad, precio, fecha);
             fd.generarFactura(f);
-            /**
+            
             PDDocument document = new PDDocument();
             PDPage page = new PDPage();
             document.addPage(page);
@@ -54,7 +59,7 @@ public class FacturaServlet extends HttpServlet {
             contentStream.close();
 
             document.save(response.getOutputStream());
-            document.close();**/
+            document.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

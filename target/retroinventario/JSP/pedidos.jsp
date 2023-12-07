@@ -11,6 +11,7 @@
         <link href="../images/logoR.png" rel="icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../JSP/CSS/output.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
         <title>Pedidos</title>
     </head>
     <body>

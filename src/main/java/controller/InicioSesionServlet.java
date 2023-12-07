@@ -26,6 +26,8 @@ public class InicioSesionServlet extends HttpServlet {
             // Si los datos son válidos, redireccionar a empleados.jsp
             if ("admin@gmail.com".equals(correo)) {
                 response.sendRedirect(request.getContextPath() + "/JSP/Empleados.jsp");
+            }else{
+                 response.sendRedirect(request.getContextPath() + "/JSP/empleado_entregas.jsp");
             }
             
         } else {
