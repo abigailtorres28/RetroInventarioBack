@@ -1,7 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page import="DAO.LoteDAO"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <%@ page contentType="text/html;charset=UTF-8" language="java" %>
         <link href="../images/logoR.png" rel="icon"> 
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -42,66 +45,58 @@
                 <div class="p-5 rounded-2xl flex flex-col gap-3">
                     <div>
                         <p class="font-bold text-3xl text-slate-800 mb-3">Disponibles</p>
-                        <div class="ml-5 flex gap-20">
-                            <div class="flex flex-col justify-center">
-                                <div class="flex items-center gap-3">
-                                    <p class="text-2xl font-semibold">Color:</p>
-                                    <div class="flex gap-2">
-                                        <div class="w-5 h-5 bg-red-600 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-blue-500 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-green-500 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-pink-400 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-black rounded-[50%]"></div>
+                        <form action="../administrarCamisas" method="post">
+                            <div class="ml-5 flex gap-20">
+                                <div class="flex flex-col justify-center">
+                                    <div class="flex items-center gap-3">
+                                        <p class="text-2xl font-semibold">Color:</p>
+                                        <div class="flex gap-2">
+                                            <select class="form-select py-1 px-2 rounded-lg font-semibold" name="color">
+                                                <%
+                                                    LoteDAO dao = new LoteDAO();
+                                                    List<String> list = dao.colores();
+                                                    Iterator<String> iter = list.iterator();
+                                                    String color = "";
+                                                    while (iter.hasNext()) {
+                                                        color = iter.next();
+                                                %>
+                                                <option value="<%=color%>"><%=color%></option>
+
+                                                <%}%>     
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <p class="text-2xl font-semibold">Talla:</p>
+                                        <div class="flex gap-2">
+                                            <select class="form-select py-1 px-2 rounded-lg font-semibold" name="talla">
+                                                <%
+                                                    LoteDAO daoT = new LoteDAO();
+                                                    List<String> lista = daoT.tallas();
+                                                    Iterator<String> iterador = lista.iterator();
+                                                    String talla = "";
+                                                    while (iterador.hasNext()) {
+                                                       talla = iterador.next();
+                                                %>
+                                                <option value="<%=talla%>"><%=talla%></option>
+
+                                                <%}%>     
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-3">
-                                    <p class="text-2xl font-semibold">Talla:</p>
-                                    <div class="flex gap-2">
-                                        <div class="w-8 h-5 bg-indigo-700 text-white text-center font-semibold">S</div>
-                                        <div class="w-8 h-5 bg-orange-300 text-white text-center font-semibold">M</div>
-                                        <div class="w-8 h-5 bg-cyan-600 text-white text-center font-semibold">L</div>
+                                <div>
+                                    <div class="w-28 h-20 bg-white flex justify-center items-center shadow-lg ml-12">
+                                        <label name="cantidad"><%= session.getAttribute("cantidad") %></label>
                                     </div>
                                 </div>
+                                <div>
+                                    <button type="submit" name="action" value="inventarioDisponible" class="bg-gray-500 font-semibold text-white p-2 px-8 rounded-xl shadow-lg shadow-gray-500 hover:bg-gray-700 transition ease-in-out">Buscar</button>
+                                </div>
                             </div>
-                            <div>
-                                <div class="w-28 h-20 bg-white flex justify-center items-center shadow-lg ml-12">?</div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                    <div>
-                        <p class="font-bold text-3xl text-slate-800 mb-3">Estampadas</p>
-                        <div class="ml-5 flex gap-20">
-                            <div class="flex flex-col justify-center">
-                                <div class="flex items-center gap-3">
-                                    <p class="text-2xl font-semibold">Color:</p>
-                                    <div class="flex gap-2">
-                                        <div class="w-5 h-5 bg-red-600 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-blue-500 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-green-500 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-pink-400 rounded-[50%]"></div>
-                                        <div class="w-5 h-5 bg-black rounded-[50%]"></div>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-3">
-                                    <p class="text-2xl font-semibold">Talla:</p>
-                                    <div class="flex gap-2">
-                                        <div class="w-8 h-5 bg-indigo-700 text-white text-center font-semibold">S</div>
-                                        <div class="w-8 h-5 bg-orange-300 text-white text-center font-semibold">M</div>
-                                        <div class="w-8 h-5 bg-cyan-600 text-white text-center font-semibold">L</div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-3">
-                                    <p class="text-2xl font-semibold">Tipo de Estampado</p>
-                                    <button>
-                                        <img src="assets/arrowRight.svg" alt="arrowRight" class="bg-white px-5 py-1 rounded-lg">
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="w-28 h-20 bg-white flex justify-center items-center shadow-lg">?</div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

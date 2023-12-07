@@ -11,9 +11,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/iniciarSesion")
 public class InicioSesionServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String correo = request.getParameter("correo");
         String contraseña = request.getParameter("contraseña");
@@ -24,7 +24,10 @@ public class InicioSesionServlet extends HttpServlet {
 
         if (datosValidos) {
             // Si los datos son válidos, redireccionar a empleados.jsp
-            response.sendRedirect(request.getContextPath() + "/JSP/Empleados.jsp");
+            if ("admin@gmail.com".equals(correo)) {
+                response.sendRedirect(request.getContextPath() + "/JSP/Empleados.jsp");
+            }
+            
         } else {
             // Si los datos son incorrectos, mostrar un mensaje en index.jsp
             request.setAttribute("mensaje", "Los datos son incorrectos");

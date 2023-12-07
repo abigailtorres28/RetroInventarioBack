@@ -186,5 +186,30 @@ public class EmpleadoDAO implements IntEmpleado {
             return false;
         }
     }
+    //////Este metodo trae una lista del id y del nombre de los empleados que se encuentran activos
+    @Override
+    public List<Empleado> listar() {
+        List<Empleado> empleados = new ArrayList<>();
+        String sql= "SELECT * FROM empleado WHERE estado='activo'";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Empleado e = new Empleado();
+                e.setId_empleado(rs.getInt("idEmpleado"));
+                e.setCedula(rs.getString("cedula"));
+                e.setNombres(rs.getString("nombres"));
+                e.setApellidos(rs.getString("apellidos"));
+                e.setCorreo(rs.getString("correo"));
+                e.setTelefono(rs.getString("telefono"));
+                e.setEstado(rs.getString("estado"));
+                e.setCotraseña(rs.getString("contraseña"));
+                empleados.add(e);
+            }
+        } catch (Exception e) {
+        }
+        return empleados;
+    }
 
 }

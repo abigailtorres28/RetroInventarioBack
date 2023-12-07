@@ -25,9 +25,9 @@ public class FacturaDAO implements IntFacura {
     public boolean generarFactura(Factura f) {
         LocalDate fecha = f.getFecha();
         java.sql.Date fechasql2 = java.sql.Date.valueOf(fecha);
-        String sql = "insert into factura (`idPedido`, `correoCliente`, `precio` , `fecha`) values('"
+        String sql = "insert into factura (`idPedido`, `correoCliente`, `precio` , `nombre`, `cedula` ,`cantidad`, `fecha`) values('"
                 + f.getIdPedido() + "','" + f.getCorreo() + "','"
-                + f.getPrecio() + "','" + fechasql2 + "')";
+                + f.getPrecio() + "','" + f.getNombre() + "','"  + f.getCedula() + "','" + f.getCantidad() + "','" + fechasql2 + "')";
         System.out.println(sql);
         try {
             int pedido= f.getIdPedido();

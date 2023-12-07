@@ -14,8 +14,8 @@ import Model.Pedido;
 
 public class pruebas {
     public static void main(String[] args) {
-        System.out.println("Vamos a asignarle un empleaodo al pedido 3");
-        crear();
+        //System.out.println("Vamos a asignarle un empleaodo al pedido 3");
+        //crear();
         // ingresarLote();
         // listarLotes();
         // ingresarLote();
@@ -34,6 +34,9 @@ public class pruebas {
         // consultarDisponibles();
         //asignarEmpleado();
         //validarUsuario("admin@gmail.com", "abi");
+        //listarColores();
+        //listarTallas();
+        cantidadDeCamisas("verde", "m");
     }
 
     public static void crear() {
@@ -187,13 +190,13 @@ public class pruebas {
     }
 
     public static void crearFactura() {
-        Factura f = new Factura(2, "camila@gmail.com", 50000, LocalDate.of(2023, 11, 24));
+        //Factura f = new Factura(2, "camila@gmail.com", 50000, LocalDate.of(2023, 11, 24));
         FacturaDAO fac = new FacturaDAO();
-        if (fac.generarFactura(f)) {
+        //if (fac.generarFactura(f)) {
             System.out.println("se creo una factura");
-        } else {
-            System.out.println("Algo falló we");
-        }
+        //} else {
+        //    System.out.println("Algo falló we");
+        //}
     }
 
     public static void listarFacturas() {
@@ -254,5 +257,26 @@ public class pruebas {
             System.out.println("nanaiii no existe");
         }
     }
+    
+    public static void listarColores(){
+        LoteDAO l = new LoteDAO();
+        List<String> colores = l.colores();
+        System.out.println("estos son los colores disponibles: "+ colores.toString());
+        
+    }
+
+      public static void listarTallas(){
+        LoteDAO l = new LoteDAO();
+        List<String> colores = l.tallas();
+        System.out.println("estos son las tallas disponibles: "+ colores.toString());
+        
+    }
+
+    public static void cantidadDeCamisas(String color, String talla){
+        LoteDAO l = new LoteDAO();
+        int cantidad= l.buscarInventario(color, talla);
+        System.out.println("Del color : "+ color + " y la talla: "+ talla + " hay : "+ cantidad + " de camisas");
+    }
+    
 
 }

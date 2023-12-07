@@ -52,7 +52,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="max-h-[450px] overflow-scroll mt-5 ml-10 w-full">
+                <div class="max-h-[450px] overflow-scroll mt-5 ml-10">
                     <table class="mt-10 ml-10 shadow-xl">
                         <thead>
                             <tr class="bg-black text-white text-sm">
@@ -62,7 +62,6 @@
                                 <th class="px-8 py-4">Color</th>
                                 <th class="px-8 py-4">Identificador</th>
                                 <th class="px-8 py-4">Tallas</th>
-                                <th class="px-8 py-4">Opciones</th>
                             </tr>
                         </thead>
                         <% 
@@ -81,13 +80,6 @@
                                 <td class="px-8 py-4"> <%= l.getColor()%></td>
                                 <td class="px-8 py-4"> <%= l.getId()%></td>
                                 <td class="px-8 py-4"> <%= l.getTalla()%></td>
-                                <td class="px-8 py-4">
-                                    <div class="flex justify-center items-center">
-                                        <button>
-                                            <img class="w-[20px]" src="assets/eye.svg" alt="eye">
-                                        </button>
-                                    </div>
-                                </td>
                             </tr>
                         </tbody>
                         <%}%>

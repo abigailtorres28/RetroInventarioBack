@@ -11,6 +11,7 @@ import config.conexion;
 import interfaces.IntLote;
 
 public class LoteDAO implements IntLote {
+
     conexion cn = new conexion();
     Connection con;
     PreparedStatement ps;
@@ -21,8 +22,8 @@ public class LoteDAO implements IntLote {
     public boolean ingresar(Lote lote) {
         LocalDate fecha = lote.getFechaEntrada();
         java.sql.Date fechasql = java.sql.Date.valueOf(fecha);
-        String sql = "INSERT INTO `camisas`(`fechaEntrada`, `color`, `talla`, `cantidad`, `precio`) VALUES ('" +
-                fechasql + "','" + lote.getColor() + "','" + lote.getTalla() + "','" + lote.getCantidad() + "','"
+        String sql = "INSERT INTO `camisas`(`fechaEntrada`, `color`, `talla`, `cantidad`, `precio`) VALUES ('"
+                + fechasql + "','" + lote.getColor() + "','" + lote.getTalla() + "','" + lote.getCantidad() + "','"
                 + lote.getPrecio() + "')";
         System.out.println(sql);
         try {
@@ -88,17 +89,55 @@ public class LoteDAO implements IntLote {
 
     @Override
     public List<String> colores() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<String> colores = new ArrayList<>();
+        String sql = "SELECT DISTINCT color FROM camisas ";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String color = rs.getString("color");
+                colores.add(color);
+            }
+        } catch (Exception e) {
+            System.out.println("ha ocurrido un error : " + e.getMessage());
+        }
+        return colores;
     }
 
     @Override
     public List<String> tallas() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<String> tallas = new ArrayList<>();
+        String sql = "SELECT DISTINCT talla FROM camisas ";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String talla = rs.getString("talla");
+                tallas.add(talla);
+            }
+        } catch (Exception e) {
+            System.out.println("ha ocurrido un error : " + e.getMessage());
+        }
+        return tallas;
     }
 
     @Override
-    public int buscarInventario(String color, String talla) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int buscarInventario(String color, String talla
+    ) {
+        int cantidad = 0;
+        String sql = "SELECT SUM(cantidad) as cantidad FROM camisas WHERE LOWER(color) = LOWER('" + color + "') AND LOWER(talla) = LOWER('" + talla + "')";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                cantidad= rs.getInt("cantidad"); 
+            }
+        } catch (Exception e) {
+            System.out.println("hubo un error: " + e.getMessage());
+        }
+        return cantidad;
     }
-
 }

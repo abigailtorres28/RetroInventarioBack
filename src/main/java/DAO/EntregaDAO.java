@@ -96,5 +96,29 @@ public class EntregaDAO implements IntEntrega {
         }
         return null;
     }
+    ////Este metodo devuelve una lista con entregas que tucieron camisas que se dañaron durante el proceso de estampado o que estaban defectuosas
+    @Override
+    public List<Entrega> listarDefectuosas() {
+         List<Entrega> entregas = new ArrayList<>();
+        String sql = "select * from entrega where defectuosas > 0";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Entrega e = new Entrega();
+                e.setIdEntrega(rs.getInt("idEntrega"));
+                e.setIdPedido(rs.getInt("idPedido"));
+                e.setIdEmpleado(rs.getInt("idEmpleado"));
+                e.setFecha(rs.getDate("fecha").toLocalDate());
+                e.setNumDefectuosas(rs.getInt("defectuosas"));
+                e.setComentario(rs.getString("comentario"));
+                entregas.add(e);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+        }
+        return entregas;
+    }
 
 }

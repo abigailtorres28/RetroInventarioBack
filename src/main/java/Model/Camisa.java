@@ -3,6 +3,7 @@ package Model;
 import java.sql.Blob;
 
 public class Camisa {
+
     int id;
     int idLote;
     int idPedido;
@@ -14,7 +15,14 @@ public class Camisa {
     public Camisa() {
     }
 
-     public Camisa(int idLote, int idPedido, String talla, String color, String tipoEstampado, Blob imagen) {
+    public Camisa(int idPedido, String talla, String color, String tipoEstampado) {
+        this.idPedido = idPedido;
+        this.talla = talla;
+        this.color = color;
+        this.tipoEstampado = tipoEstampado;
+    }
+
+    public Camisa(int idLote, int idPedido, String talla, String color, String tipoEstampado, Blob imagen) {
         this.idLote = idLote;
         this.idPedido = idPedido;
         this.talla = talla;
@@ -89,18 +97,17 @@ public class Camisa {
         this.imagen = imagen;
     }
 
-
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", idLote='" + getIdLote() + "'" +
-            ", idPedido='" + getIdPedido() + "'" +
-            ", talla='" + getTalla() + "'" +
-            ", color='" + getColor() + "'" +
-            ", tipoEstampado='" + getTipoEstampado() + "'" +
-            ", imagen='" + getImagen() + "'" +
-            "}";
+        return "{"
+                + " id='" + getId() + "'"
+                + ", idLote='" + getIdLote() + "'"
+                + ", idPedido='" + getIdPedido() + "'"
+                + ", talla='" + getTalla() + "'"
+                + ", color='" + getColor() + "'"
+                + ", tipoEstampado='" + getTipoEstampado() + "'"
+                + ", imagen='" + getImagen() + "'"
+                + "}";
     }
 
 }
