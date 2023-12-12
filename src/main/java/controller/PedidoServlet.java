@@ -16,10 +16,10 @@ import java.time.LocalDate;
 @WebServlet("/administrarPedidos")
 public class PedidoServlet extends HttpServlet {
 
-    String pedidos = "JSP/pedidos.jsp";
-    String agregar = "JSP/pedidos_agregar.jsp";
-    String asignar = "JSP/pedido_asignar.jsp";
-    String ver = "JSP/pedido_info.jsp";
+    String pedidos = "/JSP/pedidos.jsp";
+    String agregar = "/JSP/pedidos_agregar.jsp";
+    String asignar = "/JSP/pedido_asignar.jsp";
+    String ver = "/JSP/pedido_info.jsp";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

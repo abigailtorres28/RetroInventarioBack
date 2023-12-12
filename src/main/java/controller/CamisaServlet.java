@@ -13,10 +13,10 @@ import java.time.LocalDate;
 @WebServlet("/administrarCamisas")
 public class CamisaServlet extends HttpServlet {
 
-    String camisas = "JSP/camisas.jsp";
-    String registro = "JSP/camisas_registro.jsp";
-    String inventario = "JSP/camisas_inventario.jsp";
-    String informe = "JSP/camisas_defectuosas.jsp";
+    String camisas = "/JSP/camisas.jsp";
+    String registro = "/JSP/camisas_registro.jsp";
+    String inventario = "/JSP/camisas_inventario.jsp";
+    String informe = "/JSP/camisas_defectuosas.jsp";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

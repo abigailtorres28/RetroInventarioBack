@@ -10,5 +10,6 @@ public interface IntPedido {
     public List<String> pedidos();
     public void asignarEmpleado(int idPedido, int idEmpleado);
     public Pedido buscarPedido(int id);
+    public List<Pedido> listarPedidosAsigandos(int id);
     
 }

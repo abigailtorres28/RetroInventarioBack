@@ -237,5 +237,35 @@ public class PedidoDAO implements IntPedido {
         }
         return pedidos;
     }
+    
+    /// devuelve una lista con los pedidos que le han sido asignados al empleado
+    @Override
+    public List<Pedido> listarPedidosAsigandos(int id) {
+        List<Pedido> pedidos = new ArrayList<>();
+        String sql = "SELECT * FROM pedido WHERE idEmpleado = " + id + " AND estado = 'asignado'";
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Pedido p = new Pedido();
+                p.setId(rs.getInt("idPedido"));
+                p.setCliente(rs.getString("cliente"));
+                p.setCantidad(rs.getInt("cantidad"));
+                p.setDireccion(rs.getString("direccion"));
+                p.setFechaPedido(rs.getDate("fechaPedido").toLocalDate());
+                if (rs.getString("fechaEntrega") != null) {
+                    p.setFechaEntrega(rs.getDate("fechaEntrega").toLocalDate());
+                }
+                p.setIdEmpleado(rs.getInt("idEmpleado"));
+                p.setEstado(rs.getString("estado"));
+                pedidos.add(p);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return pedidos;
+    }
 
 }

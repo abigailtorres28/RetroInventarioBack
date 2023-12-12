@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/administrarEmpleados")
 public class EmpleadosServlet extends HttpServlet {
 
-    String empleados = "JSP/Empleados.jsp";
-    String editar = "JSP/empleados_editar.jsp";
+    String empleados = "/JSP/Empleados.jsp";
+    String editar = "/JSP/empleados_editar.jsp";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

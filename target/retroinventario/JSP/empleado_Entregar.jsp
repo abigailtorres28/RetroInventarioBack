@@ -21,15 +21,26 @@
                 <img class="w-[300px] p-5" src="assets/Logo-Retro-Shirt.jpg" alt="logo">
                 <div class="w-full">
                     <ul class="text-white font-semibold">
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="empleado_entregas.jsp">Entregas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out" href="camisas.jsp">
-                            <a href="empleado_camisas.jsp">Camisas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="empleado_pedidos.jsp">Pedidos</a>
-                        </li>
+                        <a href="empleado_entregas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Entregas</li>
+                            </ul>
+                        </a>
+                        <a href="empleado_camisas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Camisas</li>
+                            </ul>
+                        </a>
+                        <a href="empleado_pedidos.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Pedidos</li>
+                            </ul>
+                        </a>
+                        <a href="../index.jsp">
+                            <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
+                                <img src="assets/salir.png" alt="Logout" width="20" height="20"> 
+                            </li>
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -45,8 +56,9 @@
                                     <label class="text-white font-semibold" for="nombre">Id Pedido</label>
                                     <select class="form-select py-1 px-2 rounded-lg font-semibold" name="pedido" id="pedido">
                                         <%
+                                            int idEmpleado = (Integer)session.getAttribute("idEmpleado");
                                             PedidoDAO daop = new PedidoDAO();
-                                            List<Pedido> lista = daop.listarPedidos();
+                                            List<Pedido> lista = daop.listarPedidosAsigandos(idEmpleado);
                                             Iterator<Pedido> itera = lista.iterator();
                                             Pedido pedido = null;
                                             while (itera.hasNext()) {
@@ -62,15 +74,9 @@
                                     <select class="form-select py-1 px-2 rounded-lg font-semibold" name="empleado" id="empleado">
                                         <%
                                             EmpleadoDAO dao = new EmpleadoDAO();
-                                            List<Empleado> list = dao.listar();
-                                            Iterator<Empleado> iter = list.iterator();
-                                            Empleado empleado = null;
-                                            while (iter.hasNext()) {
-                                                empleado = iter.next();
+                                            Empleado e = dao.verEmpleado(idEmpleado);
                                         %>
-                                        <option value="<%=empleado.getId_empleado()%>"><%=empleado.getNombres()%></option>
-
-                                        <%}%>     
+                                        <option value="<%=e.getId_empleado()%>"><%=e.getNombres()%></option>
                                     </select>
                                 </div>
                                 <div class="flex flex-col">

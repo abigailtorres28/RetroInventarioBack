@@ -151,7 +151,7 @@ public class pruebas {
     }
 
     public static void listarPedidosAsignadosEmpleado(int id) {
-        EmpleadoDAO e = new EmpleadoDAO();
+        PedidoDAO e = new PedidoDAO();
         List<Pedido> pedidos = e.listarPedidosAsigandos(id);
         List<Pedido> otraLista = new ArrayList<>();
         otraLista.addAll(pedidos);
@@ -249,9 +249,9 @@ public class pruebas {
 
     public static void validarUsuario(String correo, String contraseña){
         EmpleadoDAO em= new EmpleadoDAO();
-        boolean usuario= em.validarUsuario(correo, contraseña);
-        if(usuario){
-            System.out.println("wey si existe ese usaurio");
+        int  usuario= em.validarUsuario(correo, contraseña);
+        if(usuario>0){
+            System.out.println("wey si existe ese usaurio y si id es " + usuario);
         }
         else{
             System.out.println("nanaiii no existe");

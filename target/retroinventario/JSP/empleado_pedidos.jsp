@@ -19,15 +19,26 @@
                 <img class="w-[300px] p-5" src="assets/Logo-Retro-Shirt.jpg" alt="logo">
                 <div class="w-full">
                     <ul class="text-white font-semibold">
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="empleado_entregas.jsp">Entregas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out" href="camisas.jsp">
-                            <a href="empleado_camisas.jsp">Camisas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="empleado_pedidos.jsp">Pedidos</a>
-                        </li>
+                        <a href="empleado_entregas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Entregas</li>
+                            </ul>
+                        </a>
+                        <a href="empleado_camisas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Camisas</li>
+                            </ul>
+                        </a>
+                        <a href="empleado_pedidos.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Pedidos</li>
+                            </ul>
+                        </a>
+                        <a href="../index.jsp">
+                            <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
+                                <img src="assets/salir.png" alt="Logout" width="20" height="20"> 
+                            </li>
+                        </a>
                     </ul>
                 </div>
                 <form action="../index.jsp" method="get">
@@ -38,8 +49,8 @@
                 <div class="flex justify-between ml-12 mt-12">
                     <p class="text-4xl font-bold">Pedidos</p>
                 </div>
-                <div class="max-h-[450px] overflow-scroll mt-5 ml-10">
-                    <table class="mt-10 ml-10 shadow-xl">
+                <div class="max-h-[450px] overflow-scroll mt-10 ml-10">
+                    <table class="mt-10 ml-10 shadow-xl" style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="bg-black text-white text-sm">
                                 <th class="px-8 py-4">Fecha</th>
@@ -50,8 +61,9 @@
                             </tr>
                         </thead>
                         <% 
-                                   PedidoDAO pd = new PedidoDAO();
-                                    List<Pedido> list = pd.listarPedidos();
+                                    int idEmpleado = (Integer)session.getAttribute("idEmpleado");
+                                    PedidoDAO pd = new PedidoDAO();
+                                    List<Pedido> list = pd.listarPedidosAsigandos(idEmpleado);
                                     Iterator<Pedido> iter = list.iterator();
                                     Pedido p = null;
                                     while (iter.hasNext()) {

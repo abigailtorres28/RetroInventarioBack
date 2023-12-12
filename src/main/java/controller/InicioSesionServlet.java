@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/iniciarSesion")
 public class InicioSesionServlet extends HttpServlet {
@@ -20,16 +21,18 @@ public class InicioSesionServlet extends HttpServlet {
 
         // Lógica para validar el inicio de sesión en la base de datos
         EmpleadoDAO usuarioDAO = new EmpleadoDAO();
-        boolean datosValidos = usuarioDAO.validarUsuario(correo, contraseña);
+        int idUsuario = usuarioDAO.validarUsuario(correo, contraseña);
 
-        if (datosValidos) {
+        if (idUsuario > 0) {
             // Si los datos son válidos, redireccionar a empleados.jsp
             if ("admin@gmail.com".equals(correo)) {
                 response.sendRedirect(request.getContextPath() + "/JSP/Empleados.jsp");
-            }else{
-                 response.sendRedirect(request.getContextPath() + "/JSP/empleado_entregas.jsp");
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("idEmpleado", idUsuario);
+                response.sendRedirect(request.getContextPath() + "/JSP/empleado_entregas.jsp");
             }
-            
+
         } else {
             // Si los datos son incorrectos, mostrar un mensaje en index.jsp
             request.setAttribute("mensaje", "Los datos son incorrectos");

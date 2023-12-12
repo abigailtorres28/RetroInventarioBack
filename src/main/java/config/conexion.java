@@ -9,7 +9,7 @@ public class conexion {
     public conexion() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3307/retroinventario?zeroDateTimeBehavior=convertToNull", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://mysql_nuevo:3306/retroinventario?zeroDateTimeBehavior=convertToNull", "root", "root");
         } catch (Exception e) {
             System.err.println("ALGO SALIO MAL WEY" + e);
         }

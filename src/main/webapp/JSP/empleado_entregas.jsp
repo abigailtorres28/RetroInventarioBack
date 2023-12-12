@@ -19,15 +19,26 @@
                 <img class="w-[300px] p-5" src="assets/Logo-Retro-Shirt.jpg" alt="logo">
                 <div class="w-full">
                     <ul class="text-white font-semibold">
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="empleado_entregas.jsp">Entregas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out" href="camisas.jsp">
-                            <a href="empleado_camisas.jsp">Camisas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="empleado_pedidos.jsp">Pedidos</a>
-                        </li>
+                        <a href="empleado_entregas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Entregas</li>
+                            </ul>
+                        </a>
+                        <a href="empleado_camisas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Camisas</li>
+                            </ul>
+                        </a>
+                        <a href="empleado_pedidos.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">Pedidos</li>
+                            </ul>
+                        </a>
+                        <a href="../index.jsp">
+                            <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
+                                <img src="assets/salir.png" alt="Logout" width="20" height="20"> 
+                            </li>
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -43,7 +54,7 @@
                     </div>
                 </div>
                 <div class="max-h-[450px] overflow-scroll mt-10 ml-10">
-                    <table class="mt-10 shadow-xl">
+                    <table class="mt-10 shadow-xl" style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="bg-black text-white text-sm">
                                 <th class="px-6 py-2">ID Pedido</th>
@@ -52,9 +63,11 @@
                                 <th class="px-6 py-2">Comentario</th>
                             </tr>
                         </thead>
+
                         <% 
+                                int idEmpleado = (Integer)session.getAttribute("idEmpleado");
                                 EntregaDAO em = new EntregaDAO();
-                                List<Entrega> list = em.listarEntregas();
+                                List<Entrega> list = em.buscarEntregasEmpleado(idEmpleado);
                                 Iterator<Entrega> iter = list.iterator();
                                 Entrega e = null;
                                 while (iter.hasNext()) {

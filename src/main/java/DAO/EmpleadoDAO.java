@@ -12,6 +12,7 @@ import Model.Pedido;
 import interfaces.IntEmpleado;
 
 public class EmpleadoDAO implements IntEmpleado {
+
     conexion cn = new conexion();
     Connection con;
     PreparedStatement ps;
@@ -26,8 +27,8 @@ public class EmpleadoDAO implements IntEmpleado {
     public boolean agregarEmpleado(Empleado e) {
         String sql = "insert into empleado(`cedula`, `nombres`, `apellidos`, `correo` , `telefono`, `estado`, `contraseña`) values('"
                 + e.getCedula() + "','" + e.getNombres() + "','"
-                + e.getApellidos() + "','" + e.getCorreo() + "','" + e.getTelefono() + "','" + "Activo" +
-                "','" + e.getCotraseña() + "')";
+                + e.getApellidos() + "','" + e.getCorreo() + "','" + e.getTelefono() + "','" + "Activo"
+                + "','" + e.getCotraseña() + "')";
         System.out.println(sql);
         try {
             con = cn.getConnection();
@@ -142,55 +143,32 @@ public class EmpleadoDAO implements IntEmpleado {
 
     }
 
-    /// devuelve una lista con los pedidos que le han sido asignados al empleado
+  
     @Override
-    public List<Pedido> listarPedidosAsigandos(int id) {
-        List<Pedido> pedidos = new ArrayList<>();
-        String sql = "select * from pedido where idEmpleado=" + id;
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Pedido p = new Pedido();
-                p.setId(rs.getInt("idPedido"));
-                p.setCliente(rs.getString("cliente"));
-                p.setCantidad(rs.getInt("cantidad"));
-                p.setDireccion(rs.getString("direccion"));
-                p.setFechaPedido(rs.getDate("fechaPedido").toLocalDate());
-                if (rs.getString("fechaEntrega") != null) {
-                    p.setFechaEntrega(rs.getDate("fechaEntrega").toLocalDate());
-                }
-                p.setIdEmpleado(rs.getInt("idEmpleado"));
-                p.setEstado(rs.getString("estado"));
-                pedidos.add(p);
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return pedidos;
-    }
-
-    @Override
-    public boolean validarUsuario(String correo, String contraseña) {
-        String query = "SELECT * FROM empleado WHERE correo = ? AND contraseña = ?";
+    public int validarUsuario(String correo, String contraseña) {
+        String query = "SELECT idEmpleado FROM empleado WHERE correo = ? AND contraseña = ?";
         try {
             con = cn.getConnection();
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, correo);
             statement.setString(2, contraseña);
             ResultSet rs = statement.executeQuery();
-            return rs.next(); // Si hay una fila devuelta, las credenciales son válidas
+            if (rs.next()) {
+                return rs.getInt("idEmpleado"); // Si las credenciales coinciden, devuelve el idEmpleado
+            } else {
+                return 0; // Si no hay coincidencia, devuelve 0
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return 0; // En caso de error, también devuelve 0
         }
     }
+
     //////Este metodo trae una lista del id y del nombre de los empleados que se encuentran activos
     @Override
     public List<Empleado> listar() {
         List<Empleado> empleados = new ArrayList<>();
-        String sql= "SELECT * FROM empleado WHERE estado='activo'";
+        String sql = "SELECT * FROM empleado WHERE estado='activo'";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);

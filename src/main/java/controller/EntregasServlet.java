@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @WebServlet("/entregas")
 public class EntregasServlet extends HttpServlet {
 
-    String entregas = "JSP/empleado_entregas.jsp";
+    String entregas = "/JSP/empleado_entregas.jsp";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

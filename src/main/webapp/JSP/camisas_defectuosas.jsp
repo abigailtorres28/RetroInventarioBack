@@ -20,24 +20,36 @@
                 <img class="w-[300px] p-5" src="assets/Logo-Retro-Shirt.jpg" alt="logo">
                 <div class="w-full">
                     <ul class="text-white font-semibold">
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="Empleados.jsp">Empleados</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out" href="camisas.jsp">
-                            <a href="camisas.jsp">Camisas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="pedidos.jsp">Pedidos</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="informes.jsp">Informes</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="facturas.jsp">Facturas</a>
-                        </li>
-                        <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
-                            <a href="#">Historial</a>
-                        </li>
+                        <a href="Empleados.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 hover:bg-gray-900 transition-all ease-in-out">Empleados</li>
+                            </ul>
+                        </a>
+                        <a href="camisas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 hover:bg-gray-900 transition-all ease-in-out">Camisas</li>
+                            </ul>
+                        </a>
+                        <a href="pedidos.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 hover:bg-gray-900 transition-all ease-in-out">Pedidos</li>
+                            </ul>
+                        </a>
+                        <a href="informes.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 hover:bg-gray-900 transition-all ease-in-out">Informes</li>
+                            </ul>
+                        </a>
+                        <a href="facturas.jsp">
+                            <ul class="text-white font-semibold">
+                                <li class="py-3 pl-10 hover:bg-gray-900 transition-all ease-in-out">Facturas</li>
+                            </ul>
+                        </a>
+                        <a href="../index.jsp">
+                            <li class="py-3 pl-10 cursor-pointer hover:bg-gray-900 transition-all ease-in-out">
+                                <img src="assets/salir.png" alt="Logout" width="20" height="20"> 
+                            </li>
+                        </a>
                     </ul>
                 </div>
             </div>
@@ -46,7 +58,7 @@
                     <p class="text-4xl font-bold">Camisas Dañadas</p>
                 </div>
                 <div class="max-h-[450px] overflow-scroll mt-5 ml-10 w-full">
-                    <table  class="mt-10 ml-10 shadow-xl">
+                    <table  class="mt-10 ml-10 shadow-xl" style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr class="bg-black text-white text-sm">
                                 <th class="px-8 py-4">Pedido</th>

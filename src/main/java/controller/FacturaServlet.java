@@ -64,7 +64,7 @@ public class FacturaServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect(request.getContextPath() + "JSP/facturas.jsp");
+        response.sendRedirect(request.getContextPath() + "/JSP/facturas.jsp");
     }
 
 }
